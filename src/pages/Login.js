@@ -16,7 +16,6 @@ const Login = () => {
             })
             const data = await req.json()
             const jwt = data.token
-            console.log(data.userId)
             localStorage.setItem('jwt', jwt);
         } catch (error) {
             console.log(error)
@@ -25,6 +24,7 @@ const Login = () => {
     return (
         <div className=' h-100 d-flex align-items-center justify-content-center'>
             <div className='h-75 w-25 bg-white shadow rounded'>
+                <h1 className='text-center mt-3 fst-italic fw-bold'>PostVerse</h1>
                 <Form onSubmit={login} className='m-3'>
                     <FormControl
                         onChange={(e) => setFormData({
@@ -33,7 +33,7 @@ const Login = () => {
                         })}
                         type='email'
                         placeholder='Email'
-                        className='m-1 fw-bold'
+                        className='m-1'
                     >
                     </FormControl>
                     <FormControl
@@ -43,14 +43,14 @@ const Login = () => {
                         })}
                         type='password'
                         placeholder='Password'
-                        className='m-1 fw-bold'
+                        className='m-1'
                     >
                     </FormControl>
                     <button type='submit' className='glow-on-hover mx-1 mt-3'>
                         <b>Login</b>
                     </button>
                 </Form>
-                
+                <hr></hr>
             </div>
         </div>
     )
