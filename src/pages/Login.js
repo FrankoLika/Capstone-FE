@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import '../styles/Login.css'
 import { Form, FormControl, Container, Row, Col, } from 'react-bootstrap'
 import { Toaster } from 'react-hot-toast'
 import { Toast } from '../utilities/notifications'
 import { Link, useNavigate } from 'react-router-dom'
+import '../styles/Login-Register.css'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -27,6 +27,7 @@ const Login = () => {
             const jwt = data.token
             localStorage.setItem('jwt', jwt);
             if (jwt) {
+                successToast.success()
                 setTimeout(() => {
                     navigate('/Homepage', { replace: true });
                 }, 1000);
@@ -73,7 +74,7 @@ const Login = () => {
                             <b>Login</b>
                         </button>
                         <hr></hr>
-                        <button className='glow-on-hover mx-1 my-4 h-100' onClick={handleLoginWithGithub}>
+                        <button className='glow-on-hover-gh mx-1 my-4 h-100' onClick={handleLoginWithGithub}>
                             <b>Login with GitHub</b>
                         </button>
                     </Form>
