@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/Login.css'
-import { Form, FormControl } from 'react-bootstrap'
+import { Form, FormControl, Container, Row, Col, } from 'react-bootstrap'
 import { Toaster } from 'react-hot-toast'
 import { Toast } from '../utilities/notifications'
 import { useNavigate } from 'react-router-dom'
@@ -39,38 +39,40 @@ const Login = () => {
         }
     }
     return (
-        <div className=' h-100 d-flex align-items-center justify-content-center'>
-            <div className='h-75 w-25 bg-white shadow rounded square border border-warning'>
-                <h1 className='text-center mt-3 fst-italic fw-bold'>PostVerse</h1>
-                <Form onSubmit={login} className='m-3'>
-                    <FormControl
-                        onChange={(e) => setFormData({
-                            ...formData,
-                            email: e.target.value
-                        })}
-                        type='email'
-                        placeholder='Email'
-                        className='m-1'
-                    >
-                    </FormControl>
-                    <FormControl
-                        onChange={(e) => setFormData({
-                            ...formData,
-                            password: e.target.value
-                        })}
-                        type='password'
-                        placeholder='Password'
-                        className='m-1'
-                    >
-                    </FormControl>
-                    <button type='submit' className='glow-on-hover mx-1 mt-3'>
-                        <b>Login</b>
-                    </button>
-                </Form>
-                <hr></hr>
-                <Toaster />
-            </div>
-        </div>
+        <Container className='h-100'>
+            <Row className="h-100 justify-content-center align-items-center">
+                <Col className='bg-white shadow square border border-warning' xs={10} sm={8} md={6} lg={4} style={{ maxWidth: "300px" }}>
+                    <h3>Post Verse</h3>
+                    <Form onSubmit={login} className='m-3' style={{ maxWidth: "300px" }}>
+                        <FormControl
+                            onChange={(e) => setFormData({
+                                ...formData,
+                                email: e.target.value
+                            })}
+                            type='email'
+                            placeholder='Email'
+                            className='m-1'
+                        >
+                        </FormControl>
+                        <FormControl
+                            onChange={(e) => setFormData({
+                                ...formData,
+                                password: e.target.value
+                            })}
+                            type='password'
+                            placeholder='Password'
+                            className='m-1'
+                        >
+                        </FormControl>
+                        <button type='submit' className='glow-on-hover mx-1 mt-3'>
+                            <b>Login</b>
+                        </button>
+                    </Form>
+                    <hr></hr>
+                    <Toaster />
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

@@ -5,7 +5,7 @@ import Homepage from "./pages/Homepage"
 import ErrorPage from "./pages/ErrorPage"
 function App() {
   return (
-    <div style={{ backgroundColor: "#133337", height: "100vh" }}>
+    <div style={{ height: "100vh" }}>
       <BrowserRouter>
         <Routes>
           <Route exact path="/" element={<Login />} />
