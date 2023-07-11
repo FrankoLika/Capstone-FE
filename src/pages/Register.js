@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 import { Form, FormControl, Container, Row, Col, } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
+import Errors from '../components/Errors'
 import '../styles/Login-Register.css'
 
 const Register = () => {
 
     const [errors, setErrors] = useState()
-    console.log(errors)
+
+    const [ifErrors, setIfErrors] = useState(false)
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -35,6 +37,7 @@ const Register = () => {
             } else {
                 const errorResponse = await res.json();
                 setErrors(errorResponse.errors)
+                setIfErrors(true)
                 setTimeout(() => {
                     setIsLoading(false)
                     navigate('/register', { replace: true });
@@ -53,6 +56,7 @@ const Register = () => {
         <>
             {isLoading ? <Loader />
                 : <Container className='h-100'>
+                    {ifErrors && <Errors errors={errors} />}
                     <Row className="row-register justify-content-center align-items-center">
                         <Col className='bg-white square border' xs={10} sm={8} md={6} lg={4} style={{ maxWidth: "300px" }}>
                             <h2 className='m-3 fw-bold'>PostVerse</h2>
@@ -66,6 +70,7 @@ const Register = () => {
                                     type='text'
                                     placeholder='Username'
                                     className='m-1'
+                                    value={formData.username}
                                 >
                                 </FormControl>
                                 <FormControl
@@ -76,6 +81,7 @@ const Register = () => {
                                     type='email'
                                     placeholder='Email'
                                     className='m-1'
+                                    value={formData.email}
                                 >
                                 </FormControl>
                                 <FormControl
@@ -86,6 +92,7 @@ const Register = () => {
                                     type='password'
                                     placeholder='Password'
                                     className='m-1'
+                                    value={formData.password}
                                 >
                                 </FormControl>
                                 <button type='submit' className='glow-on-hover mx-1 my-4'>
