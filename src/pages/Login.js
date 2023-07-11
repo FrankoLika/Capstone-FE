@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import { Form, FormControl, Container, Row, Col, } from 'react-bootstrap'
-import { Toaster } from 'react-hot-toast'
-import { Toast } from '../utilities/notifications'
 import { Link, useNavigate } from 'react-router-dom'
 import Loader from '../components/Loader'
 import '../styles/Login-Register.css'
@@ -10,12 +8,13 @@ const Login = () => {
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const navigate = useNavigate();
+    const [errors, setErrors] = useState()
+
+    const [ifErrors, setIfErrors] = useState(false)
 
     const [formData, setFormData] = useState({})
 
-    const successToast = new Toast("Login effettuato con successo!")
-    const errorToast = new Toast("Login fallito")
+    const navigate = useNavigate();
 
     const login = async (e) => {
         e.preventDefault();
@@ -31,19 +30,20 @@ const Login = () => {
                 body: JSON.stringify(formData)
             })
             const data = await res.json()
+            setErrors(data.message)
+
             const jwt = data.token
             if (jwt) {
                 localStorage.setItem('jwt', jwt);
-                successToast.success()
                 setTimeout(() => {
                     setIsLoading(false)
                     navigate('/Homepage', { replace: true });
                 }, 1000);
             } else {
-                errorToast.warning();
                 setTimeout(() => {
                     setIsLoading(false)
                 }, 1000);
+                setIfErrors(true)
             }
         } catch (error) {
             console.log(error);
@@ -58,6 +58,11 @@ const Login = () => {
         <>
             {isLoading ? <Loader />
                 : <Container className='h-100'>
+                    {
+                        ifErrors && <div className='d-flex justify-content-center text-danger mt-3'>
+                            <div>{errors}</div>
+                        </div>
+                    }
                     <Row className="row-login justify-content-center align-items-center">
                         <Col className='bg-white square border' xs={10} sm={8} md={6} lg={4} style={{ maxWidth: "300px" }}>
                             <h2 className='m-3 fw-bold'>PostVerse</h2>
@@ -71,6 +76,7 @@ const Login = () => {
                                     type='email'
                                     placeholder='Email'
                                     className='m-1'
+                                    value={formData.email}
                                 >
                                 </FormControl>
                                 <FormControl
@@ -81,6 +87,7 @@ const Login = () => {
                                     type='password'
                                     placeholder='Password'
                                     className='m-1'
+                                    value={formData.password}
                                 >
                                 </FormControl>
                                 <button type='submit' className='glow-on-hover mx-1 my-4'>
@@ -91,7 +98,6 @@ const Login = () => {
                                     <b>Login with GitHub</b>
                                 </button>
                             </Form>
-                            <Toaster />
                         </Col>
                     </Row>
                     <Row className="justify-content-center align-items-center">
@@ -102,6 +108,7 @@ const Login = () => {
                             </div>
                         </Col>
                     </Row>
+
                 </Container>
             }
         </>
