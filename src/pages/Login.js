@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Form, FormControl, Container, Row, Col, } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
+import Footer from '../components/Footer'
 import Loader from '../components/Loader'
 import '../styles/Login-Register.css'
 
@@ -57,7 +58,7 @@ const Login = () => {
     return (
         <>
             {isLoading ? <Loader />
-                : <Container className='h-100'>
+                : <> <Container className='h-100'>
                     {
                         ifErrors && <div className='d-flex justify-content-center text-danger mt-3'>
                             <div>{errors}</div>
@@ -108,8 +109,9 @@ const Login = () => {
                             </div>
                         </Col>
                     </Row>
-
                 </Container>
+                    <Footer />
+                </>
             }
         </>
     )
