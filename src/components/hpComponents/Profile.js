@@ -1,9 +1,14 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
-import '../../styles/Profile.css'
+import jwtDecode from 'jwt-decode';
 import Users from '../profileComponents/Users';
+import { Link } from 'react-router-dom';
+import '../../styles/Profile.css'
 
 const Profile = ({ users }) => {
+  const token = localStorage.getItem('jwt')
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.id;
 
   const [searchTerm, setSearchTerm] = useState('');
   const [inputUsers, setInputUsers] = useState([])
@@ -18,6 +23,7 @@ const Profile = ({ users }) => {
       setInputUsers(filteredUsers)
     }
   };
+
   const handleShowUsers = () => {
     setShowUsers(true)
   }
@@ -41,15 +47,18 @@ const Profile = ({ users }) => {
             </FormControl>
           </Form>
           {showSearch &&
-            <Button className='mx-1 my-1 bg-success border-warning' 
-            onClick={() => {
-              handleSearch()
-              handleShowUsers()
-            }}
+            <Button className='mx-1 my-1 bg-success border-warning'
+              onClick={() => {
+                handleSearch()
+                handleShowUsers()
+              }}
             >
               Search
             </Button>
           }
+          <Link to={`/user/${userId}`}>
+            <Button><img src='' />Profile</Button>
+          </Link>
         </Col>
       </Row>
       {showUsers && <Users filteredUsers={inputUsers} setShowUsers={setShowUsers} />}

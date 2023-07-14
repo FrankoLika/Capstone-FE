@@ -35,7 +35,6 @@ const Login = () => {
             })
             const data = await res.json()
             setErrors(data.message)
-
             const jwt = data.token
             if (jwt) {
                 localStorage.setItem('jwt', jwt);
