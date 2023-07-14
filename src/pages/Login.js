@@ -13,7 +13,10 @@ const Login = () => {
 
     const [ifErrors, setIfErrors] = useState(false)
 
-    const [formData, setFormData] = useState({})
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    })
 
     const navigate = useNavigate();
 
@@ -61,12 +64,14 @@ const Login = () => {
                 : <> <Container className='h-100'>
                     {
                         ifErrors && <div className='d-flex justify-content-center text-danger mt-3'>
-                            <div>{errors}</div>
+                            <div>{errors.toUpperCase()}</div>
                         </div>
                     }
                     <Row className="row-login justify-content-center align-items-center">
                         <Col className='bg-white square border' xs={10} sm={8} md={6} lg={4} style={{ maxWidth: "300px" }}>
-                            <h2 className='m-3 fw-bold'>PostVerse</h2>
+                            <h2 className='m-3 fw-bold'>
+                                <span className='text-warning'>Post</span><span className='text-success'>Verse</span>
+                            </h2>
                             <hr></hr>
                             <Form onSubmit={login} className='m-3' style={{ maxWidth: "300px" }}>
                                 <FormControl

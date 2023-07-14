@@ -7,7 +7,7 @@ const Errors = ({ errors }) => {
     <div className='errors'>
       <div>
         {errors && errors.map((error) => {
-          return <div key={nanoid()}>{error.msg}</div>
+          return <div key={nanoid()}>{error.msg.toUpperCase()}</div>
         })}
       </div>
     </div>
