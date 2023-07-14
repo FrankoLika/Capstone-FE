@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import Homepage from "./pages/Homepage"
 import Errorpage from "./pages/Errorpage"
 import Register from "./pages/Register";
+import User from "./components/profileComponents/User";
 function App() {
   return (
     <div style={{ height: "100vh" }}>
@@ -12,6 +13,7 @@ function App() {
           <Route exact path="/" element={<Login />} />
           <Route element={<ProtectedRoutes />}>
             <Route path="/Homepage" element={<Homepage />} />
+            <Route path="/user/:id" element={<User />} />
           </Route>
           <Route path="/Register" element={<Register />} />
           <Route path="*" element={<Errorpage />} />

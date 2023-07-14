@@ -8,13 +8,11 @@
 
 .button {
   --border-right: 6px;
-  --text-stroke-color: rgba(0, 0, 0, 0.6);
-  --animation-color: rgb(90, 145, 17);
-  --fs-size: 2em;
+  --animation-color: #ffc107;
+  --fs-size: 25px;
   letter-spacing: 2px;
   text-decoration: none;
   font-size: var(--fs-size);
-  font-family: "Arial";
   position: relative;
   text-transform: uppercase;
   color: rgb(60, 60, 60);
@@ -31,10 +29,14 @@
   border-right: var(--border-right) solid var(--animation-color);
   overflow: hidden;
   transition: 0.5s;
-  -webkit-text-stroke: 1px var(--animation-color);
+
 }
 
 .button:hover .hover-text {
   width: 100%;
   filter: drop-shadow(0 0 23px var(--animation-color));
+}
+
+.sidebar{
+  position: fixed;
 }
