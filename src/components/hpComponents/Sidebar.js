@@ -17,9 +17,8 @@ const Sidebar = ({ handleMode, darkMode }) => {
 
   return (
     <div className='sidebar'>
-      <h2 className='m-3 fw-bold'>
+      <h2 className='m-2 fw-bold'>
         <span className='text-warning'>Post</span><span className='text-success'>Verse</span>
-        <hr></hr>
       </h2>
       <div>
         <div className='my-5'>

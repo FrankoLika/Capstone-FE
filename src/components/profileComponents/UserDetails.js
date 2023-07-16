@@ -40,23 +40,25 @@ const UserDetails = () => {
   const decodedToken = jwtDecode(token);
   const mainProfileId = decodedToken.id;
 
-  const [isFollowing, setIsFollowing] = useState(false);
-
   const handleFollow = async () => {
-    try {                                                    // /follow/userTofollow/userProfile
-      const req = await fetch(`${process.env.REACT_APP_BASE_URL}/follow/${id}/${mainProfileId}`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": 'application/json',
-        }
-      });
+    try {
+      if (id === mainProfileId) {
+        alert("non puoi seguire te stesso")
+      } else {                                              // /follow/userTofollow/userProfile
+        const req = await fetch(`${process.env.REACT_APP_BASE_URL}/follow/${id}/${mainProfileId}`, {
+          method: 'POST',
+          headers: {
+            "Content-Type": 'application/json',
+          }
+        });
+      }
       window.location.reload()
     } catch (error) {
       console.log(error)
     }
   }
   const handleUnfollow = async () => {
-    try {                                                    // /follow/userToUnfollow/userProfile
+    try {                                                 // /follow/userToUnfollow/userProfile
       const req = await fetch(`${process.env.REACT_APP_BASE_URL}/follow/${id}/${mainProfileId}`, {
         method: 'DELETE',
         headers: {

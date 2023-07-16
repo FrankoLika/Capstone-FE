@@ -31,7 +31,7 @@ const Homepage = () => {
         </Col>
         <Col xs={8} sm={8} md={8} lg={9} className='border-end border-start'>
           <NavbarSearch users={users} />
-          <Posts />
+          <Posts users={users}/>
         </Col>
       </Row>
     </Container>

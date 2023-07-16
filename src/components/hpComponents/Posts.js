@@ -3,14 +3,16 @@ import AddPost from '../postsComponents/AddPost'
 import { Container, Row, Col, Card } from 'react-bootstrap'
 import { nanoid } from 'nanoid'
 import Button from 'react-bootstrap/Button';
+import { Link } from 'react-router-dom';
 
 
 
-const Posts = () => {
+const Posts = ({ users }) => {
 
   const [isAddPostOpen, setIsAddPostOpen] = useState(false)
   const [posts, setPosts] = useState([])
-  console.log(posts)
+
+  const [userPost, setUserPost] = useState(null)
 
   const handleAddPost = () => {
     setIsAddPostOpen(true)
@@ -26,14 +28,19 @@ const Posts = () => {
     }
   }
 
+  const getUsernameById = (userId) => {
+    const user = users.find(user => user._id === userId);
+    return user ? user.username : '';
+  };
+
   useEffect(() => {
     getPosts()
   }, [])
 
   return (
     <>
-      <button onClick={handleAddPost}>Add post</button>
-      {isAddPostOpen && <AddPost setIsAddPostOpen={setIsAddPostOpen} />}
+        <button onClick={handleAddPost}>Add post</button>
+        { isAddPostOpen && <AddPost setIsAddPostOpen={setIsAddPostOpen} /> }
       <div>
         <span>all posts </span>
         <span> seguiti</span>
@@ -41,16 +48,19 @@ const Posts = () => {
       <Container>
         <Row>
           {posts && posts.map((post) => {
+            const username = getUsernameById(post.author);
             return (
               <Col key={nanoid()} sm={12} md={6} lg={4} className='mt-2'>
                 <Card style={{ width: '14rem' }}>
-                  <Card.Img variant="top" className='object-fit-cover' style={{height:"200px"}} src={post.img} />
+                  <Card.Img variant="top" className='object-fit-cover' style={{ height: "200px" }} src={post.img} />
                   <Card.Body>
                     <Card.Title>{post.title}</Card.Title>
                     <Card.Text>
                       {post.content}
                     </Card.Text>
-                    <Button variant="primary">{post.author}</Button>
+                    <Link to={`/user/${post.author}`}>
+                      <Button variant="primary">{username}</Button>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Col>
@@ -59,6 +69,8 @@ const Posts = () => {
         </Row>
       </Container>
     </>
+
+
   )
 }
 
