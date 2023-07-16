@@ -44,12 +44,6 @@ const Sidebar = ({ handleMode, darkMode }) => {
           </button>
         </div>
         <div className='my-5'>
-          <button data-text="Awesome" className="button">
-            <span className={!darkMode ? "text-white" : "null"}>&nbsp;Settings&nbsp;</span>
-            <span className="hover-text" aria-hidden="true">&nbsp;Settings&nbsp;</span>
-          </button>
-        </div>
-        <div className='my-5'>
           <button data-text="Awesome" className="button" onClick={handleExit}>
             <span className={!darkMode ? "text-white" : "null"}>&nbsp;Exit&nbsp;</span>
             <span className="hover-text" aria-hidden="true">&nbsp;Exit&nbsp;</span>

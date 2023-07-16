@@ -5,14 +5,10 @@ import { nanoid } from 'nanoid'
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 
-
-
 const Posts = ({ users }) => {
 
   const [isAddPostOpen, setIsAddPostOpen] = useState(false)
   const [posts, setPosts] = useState([])
-
-  const [userPost, setUserPost] = useState(null)
 
   const handleAddPost = () => {
     setIsAddPostOpen(true)
@@ -39,12 +35,8 @@ const Posts = ({ users }) => {
 
   return (
     <>
-        <button onClick={handleAddPost}>Add post</button>
-        { isAddPostOpen && <AddPost setIsAddPostOpen={setIsAddPostOpen} /> }
-      <div>
-        <span>all posts </span>
-        <span> seguiti</span>
-      </div>
+      <Button onClick={handleAddPost} variant='success' className='m-3'>Add post</Button>
+      {isAddPostOpen && <AddPost setIsAddPostOpen={setIsAddPostOpen} />}
       <Container>
         <Row>
           {posts && posts.map((post) => {
@@ -59,7 +51,7 @@ const Posts = ({ users }) => {
                       {post.content}
                     </Card.Text>
                     <Link to={`/user/${post.author}`}>
-                      <Button variant="primary">{username}</Button>
+                      <Button variant="warning">{username}</Button>
                     </Link>
                   </Card.Body>
                 </Card>
@@ -69,8 +61,6 @@ const Posts = ({ users }) => {
         </Row>
       </Container>
     </>
-
-
   )
 }
 

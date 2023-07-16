@@ -14,10 +14,10 @@ const useSession = () => {
 
     useEffect(() => {
         if (!session) {
-            navigate('/', {replace : true})
+            navigate('/', { replace: true })
         }
     }, [navigate, session])
-    
+
     return decodedSession
 }
 

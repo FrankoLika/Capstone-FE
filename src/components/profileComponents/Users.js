@@ -5,7 +5,6 @@ import { ListGroupItem } from 'react-bootstrap';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import '../../styles/Users.css'
 
 const Users = ({ filteredUsers, setShowUsers }) => {
 
@@ -16,7 +15,7 @@ const Users = ({ filteredUsers, setShowUsers }) => {
     return (
         <div
             className="modal show"
-            style={{display:"block", backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
+            style={{ display: "block", backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
         >
             <Modal.Dialog centered size='lg'>
                 <Modal.Body>
@@ -28,7 +27,9 @@ const Users = ({ filteredUsers, setShowUsers }) => {
                                 </div>
                                 <Link to={`/user/${user._id}`} className='text-decoration-none'>
                                     <div className='p-1'>
-                                        <ListGroupItem className='border-0 username' key={nanoid()}>{user.username}</ListGroupItem>
+                                        <ListGroupItem className='border-0' key={nanoid()}>
+                                            <Button variant='success'> {user.username} </Button>
+                                        </ListGroupItem>
                                     </div>
                                 </Link>
                             </div>

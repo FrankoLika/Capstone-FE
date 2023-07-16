@@ -73,6 +73,7 @@ const UserDetails = () => {
 
   return (
     <div>
+      <Button variant='warning' onClick={backtohome} className='m-3'>Home</Button>
       <div className='w-100 d-flex justify-content-center'>
         <Card style={{ width: '18rem' }}>
           <Card.Img variant="top" src={user.avatar} />
@@ -85,14 +86,13 @@ const UserDetails = () => {
               Following: {followingCount}
             </Card.Text>
             {user.followers && user.followers.includes(mainProfileId) ? (
-              <button onClick={handleUnfollow}>Unfollow</button>
+              <Button variant='danger' onClick={handleUnfollow}>Unfollow</Button>
             ) : (
-              <button onClick={handleFollow}>Follow</button>
+              <Button variant='success' onClick={handleFollow}>Follow</Button>
             )}
           </Card.Body>
         </Card>
       </div>
-      <Button onClick={backtohome}>Home</Button>
     </div>
   )
 }
