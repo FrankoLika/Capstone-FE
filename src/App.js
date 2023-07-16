@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage"
 import Errorpage from "./pages/Errorpage"
 import Register from "./pages/Register";
 import UserDetails from "./components/profileComponents/UserDetails";
+import Profile from "./components/profileComponents/Profile";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route element={<ProtectedRoutes />}>
             <Route path="/Homepage" element={<Homepage />} />
             <Route path="/user/:id" element={<UserDetails />} />
+            <Route path="/profile/:id" element={<Profile />} />
           </Route>
           <Route path="/Register" element={<Register />} />
           <Route path="*" element={<Errorpage />} />

@@ -30,7 +30,7 @@ const Sidebar = ({ handleMode, darkMode }) => {
             </button>
           </Link>
         </div>
-        <Link to={`/user/${userId}`}>
+        <Link to={`/profile/${userId}`}>
           <div className='my-5'>
             <button data-text="Awesome" className="button">
               <span className={!darkMode ? "text-white" : "null"}>&nbsp;Profile&nbsp;</span>
