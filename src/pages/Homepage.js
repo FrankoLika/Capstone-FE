@@ -24,14 +24,14 @@ const Homepage = () => {
     setDarkMode(!darkMode)
   }
   return (
-    <Container fluid style={!darkMode ? {backgroundColor:"#101010", color:"white"} : {backgroundColor:"white"}}>
+    <Container fluid style={!darkMode ? { backgroundColor: "#101010", color: "white" } : { backgroundColor: "white" }}>
       <Row>
         <Col xs={4} sm={4} md={4} lg={3} style={{ height: "100vh" }}>
           <Sidebar handleMode={handleMode} darkMode={darkMode} />
         </Col>
         <Col xs={8} sm={8} md={8} lg={9} className='border-end border-start'>
           <NavbarSearch users={users} />
-          <Posts users={users}/>
+          <Posts users={users} />
         </Col>
       </Row>
     </Container>

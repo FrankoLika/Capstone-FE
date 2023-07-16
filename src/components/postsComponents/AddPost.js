@@ -9,12 +9,12 @@ const AddPost = ({ setIsAddPostOpen }) => {
     const decodedToken = jwtDecode(token);
     const userId = decodedToken.id;
 
+    const [formData, setFormData] = useState({})
+    const [file, setFile] = useState(null)
+
     const closeAddPost = () => {
         setIsAddPostOpen(false)
     }
-
-    const [formData, setFormData] = useState({})
-    const [file, setFile] = useState(null)
 
     const onChangeHandleFile = (e) => {
         setFile(e.target.files[0])
@@ -43,7 +43,6 @@ const AddPost = ({ setIsAddPostOpen }) => {
                     ...formData,
                     img: uploadedFile.img
                 }
-
                 const res = await fetch(`${process.env.REACT_APP_BASE_URL}/posts/new/${userId}`, {
                     method: 'POST',
                     headers: {
@@ -51,7 +50,6 @@ const AddPost = ({ setIsAddPostOpen }) => {
                     },
                     body: JSON.stringify(postFormData)
                 });
-
                 if (res.ok) {
                     console.log('Post inviato con successo');
                 } else {
@@ -66,9 +64,8 @@ const AddPost = ({ setIsAddPostOpen }) => {
         }
     };
 
-
     return (
-        <div className="modal show" style={{display:"block", backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
+        <div className="modal show" style={{ display: "block", backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
             <Modal.Dialog centered size="lg">
                 <Modal.Body>
                     <Form onSubmit={submitPost} encType='multipart/form-data'>
@@ -101,7 +98,7 @@ const AddPost = ({ setIsAddPostOpen }) => {
                             name='img'
                             onChange={onChangeHandleFile}
                         />
-                        <Button variant="primary" type='submit'>
+                        <Button variant="success" type='submit' className='m-1'>
                             Add Post
                         </Button>
                     </Form>
