@@ -1,8 +1,14 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import jwtDecode from 'jwt-decode';
 import '../../styles/Sidebar.css'
+
 const Sidebar = ({ handleMode, darkMode }) => {
   const navigate = useNavigate()
+
+  const token = localStorage.getItem('jwt')
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.id;
 
   const handleExit = () => {
     localStorage.clear()
@@ -24,13 +30,7 @@ const Sidebar = ({ handleMode, darkMode }) => {
             </button>
           </Link>
         </div>
-        <div className='my-5'>
-          <button data-text="Awesome" className="button">
-            <span className={!darkMode ? "text-white" : "null"}>&nbsp;Search&nbsp;</span>
-            <span className="hover-text" aria-hidden="true">&nbsp;Search&nbsp;</span>
-          </button>
-        </div>
-        <Link to='/profile'>
+        <Link to={`/user/${userId}`}>
           <div className='my-5'>
             <button data-text="Awesome" className="button">
               <span className={!darkMode ? "text-white" : "null"}>&nbsp;Profile&nbsp;</span>
@@ -42,6 +42,12 @@ const Sidebar = ({ handleMode, darkMode }) => {
           <button data-text="Awesome" className="button" onClick={handleMode}>
             <span className={!darkMode ? "text-white" : "null"}>{!darkMode ? <span>&nbsp;Light&nbsp;</span> : <span>&nbsp;Dark&nbsp;</span>}</span>
             <span className="hover-text" aria-hidden="true">{!darkMode ? <span>&nbsp;Light&nbsp;</span> : <span>&nbsp;Dark&nbsp;</span>}</span>
+          </button>
+        </div>
+        <div className='my-5'>
+          <button data-text="Awesome" className="button">
+            <span className={!darkMode ? "text-white" : "null"}>&nbsp;Settings&nbsp;</span>
+            <span className="hover-text" aria-hidden="true">&nbsp;Settings&nbsp;</span>
           </button>
         </div>
         <div className='my-5'>

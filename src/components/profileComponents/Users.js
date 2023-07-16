@@ -19,24 +19,18 @@ const Users = ({ filteredUsers, setShowUsers }) => {
             style={{ display: 'block' }}
         >
             <Modal.Dialog centered size='lg'>
-                <Modal.Header>
-                    <Modal.Title className='text-warning'>Users</Modal.Title>
-                </Modal.Header>
                 <Modal.Body>
                     <ListGroup>
                         {filteredUsers.map((user) => {
                             return <div key={nanoid()} className='d-flex border-bottom justify-content-between'>
                                 <div className='p-1'>
-                                    <img src={user.avatar} className='w-25 rounded' />
+                                    <img src={user.avatar} className='w-25 rounded' alt='avatar' />
                                 </div>
                                 <Link to={`/user/${user._id}`} className='text-decoration-none'>
                                     <div className='p-1'>
-                                        <ListGroupItem className='border-0' key={nanoid()}>{user.username}</ListGroupItem>
+                                        <ListGroupItem className='border-0 username' key={nanoid()}>{user.username}</ListGroupItem>
                                     </div>
                                 </Link>
-                                <div className='p-1'>
-                                    <Button variant='success'>Follow</Button>
-                                </div>
                             </div>
                         })}
                     </ListGroup>
