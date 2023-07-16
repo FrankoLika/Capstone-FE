@@ -68,7 +68,7 @@ const AddPost = ({ setIsAddPostOpen }) => {
 
 
     return (
-        <div className="modal show" style={{ display: 'block' }}>
+        <div className="modal show" style={{display:"block", backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}>
             <Modal.Dialog centered size="lg">
                 <Modal.Body>
                     <Form onSubmit={submitPost} encType='multipart/form-data'>

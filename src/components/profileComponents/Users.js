@@ -16,7 +16,7 @@ const Users = ({ filteredUsers, setShowUsers }) => {
     return (
         <div
             className="modal show"
-            style={{ display: 'block' }}
+            style={{display:"block", backdropFilter: 'blur(8px)', backgroundColor: 'rgba(0, 0, 0, 0.5)' }}
         >
             <Modal.Dialog centered size='lg'>
                 <Modal.Body>

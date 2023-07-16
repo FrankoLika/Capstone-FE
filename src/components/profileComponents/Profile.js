@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Card from 'react-bootstrap/Card';
 import { Button, FormControl, Form } from 'react-bootstrap';
+import EditProfile from './EditProfile';
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -9,8 +10,6 @@ const Profile = () => {
     const { id } = useParams()
   
     const [user, setUser] = useState({})
-
-    const [formData, setFormData] = useState({})
   
     const followers = user.followers;
     const followersCount = followers?.length ?? 0;
@@ -27,7 +26,12 @@ const Profile = () => {
         console.log(error)
       }
     }
+
+    const [openEditProfile, setOpenEditProfile] = useState(false)
   
+    const handleEditProfile = () => {
+      setOpenEditProfile(true)
+    }
     const backtohome = () => {
       navigate('/Homepage')
     }
@@ -48,6 +52,8 @@ const Profile = () => {
             <Card.Text>
               Following: {followingCount}
             </Card.Text>
+            <Button onClick={handleEditProfile}>Edit</Button>
+            {openEditProfile ? <EditProfile userId={user._id} email={user.email} username={user.username} setOpenEditProfile={setOpenEditProfile} /> : null}
           </Card.Body>
         </Card>
       </div>
