@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import Sidebar from '../components/hpComponents/Sidebar'
 import Posts from '../components/hpComponents/Posts'
-import Profile from '../components/hpComponents/Profile'
+import NavbarSearch from '../components/hpComponents/NavbarSearch'
 
 const Homepage = () => {
 
@@ -26,11 +26,11 @@ const Homepage = () => {
   return (
     <Container fluid style={!darkMode ? {backgroundColor:"#101010", color:"white"} : {backgroundColor:"white"}}>
       <Row>
-        <Col xs={4} sm={4} md={4} lg={3} className='border-end' style={{ height: "100vh" }}>
+        <Col xs={4} sm={4} md={4} lg={3} style={{ height: "100vh" }}>
           <Sidebar handleMode={handleMode} darkMode={darkMode} />
         </Col>
-        <Col xs={8} sm={8} md={8} lg={9} className='border-end'>
-          <Profile users={users} />
+        <Col xs={8} sm={8} md={8} lg={9} className='border-end border-start'>
+          <NavbarSearch users={users} />
           <Posts />
         </Col>
       </Row>

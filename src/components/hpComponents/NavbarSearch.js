@@ -1,14 +1,9 @@
 import React, { useState } from 'react'
 import { Button, Col, Container, Form, FormControl, Row } from 'react-bootstrap'
-import jwtDecode from 'jwt-decode';
 import Users from '../profileComponents/Users';
-import { Link } from 'react-router-dom';
-import '../../styles/Profile.css'
+import '../../styles/Search.css'
 
-const Profile = ({ users }) => {
-  const token = localStorage.getItem('jwt')
-  const decodedToken = jwtDecode(token);
-  const userId = decodedToken.id;
+const NavbarSearch = ({ users }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [inputUsers, setInputUsers] = useState([])
@@ -32,7 +27,7 @@ const Profile = ({ users }) => {
   }
 
   return (
-    <Container className='profile'>
+    <Container className='search'>
       <Row className='h-100'>
         <Col xs={12} sm={12} md={12} lg={12} className='border-bottom d-flex align-items-center'>
           <Form>
@@ -56,9 +51,6 @@ const Profile = ({ users }) => {
               Search
             </Button>
           }
-          <Link to={`/user/${userId}`}>
-            <Button><img src='' />Profile</Button>
-          </Link>
         </Col>
       </Row>
       {showUsers && <Users filteredUsers={inputUsers} setShowUsers={setShowUsers} />}
@@ -66,4 +58,4 @@ const Profile = ({ users }) => {
   )
 }
 
-export default Profile
+export default NavbarSearch
